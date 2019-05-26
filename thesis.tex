@@ -1,0 +1,80 @@
+\documentclass[a5paper,twoside,headsepline,pagesize,10pt,DIV=12]{scrbook}
+\input{tex/preambule}
+\input{tex/hyperref}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    \input{tex/title}
+    % \input{tex/dedication}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+    \input{tex/acknowledgement}
+    \input{tex/abstract}
+    \input{tex/tableofcontents}
+    \input{tex/hyperref_colors}   % colors after tableofcontents
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+\part{First part}
+\chapter{first chapter}
+    \section{first section}
+    Examples \cite{kneip2013, kneip2014openGV}, another example \cite{asa, camposeco2018}.
+
+    \begin{align}
+        \underbrace{(X^T\otimes n^T)} \,\, vec([R ~ t]) &= \underbrace{d} \\
+        A \hspace*{2.5ex} vec([R ~ t]) &= \hspace*{1ex} B
+        \label{eq:Ax_b}
+    \end{align}
+
+    \begin{equation}
+    n^T [R~t] X = d \enspace .
+    \label{eq:problem_definition}
+    \end{equation}
+
+    The random Equation~\eqref{eq:problem_definition}, another random Equation~\eqref{eq:Ax_b}.
+
+    See Figure~\ref{fig:figer}, ...
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{example-image-a}
+        \caption{\textbf{This is the caption.} This is the comment ... .}
+        \label{fig:figer}
+    \end{figure}
+
+    Example of url: {\small\url{http://people.inf.ethz.ch}}. Also \href{http://people.inf.ethz.ch}{CVG webpage}.
+    \lipsum[1-10]
+    \section{second section}
+    \lipsum[1-10]
+
+
+\part{Second part}
+\chapter{second chapter}
+      \section{first section}
+      \lipsum[1-2]
+      \section{second section}
+      \lipsum[1-2]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+    \addcontentsline{toc}{chapter}{Bibliography}
+    {
+        \small
+        \bibliography{abbreviation_short.bib,bibliography.bib}
+%         \bibliographystyle{ieee}
+%       \bibliographystyle{alpha}
+%       \bibliographystyle{wmaainf}
+      \bibliographystyle{pablo}        % based on 'wmaainf'
+    }
+
+    % \input{tex/CurriculumVitae}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
