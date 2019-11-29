@@ -1,0 +1,14 @@
+bibtool -r keep_bibtex.rsc bibliography.bib -o bibliography.bib
+
+# Cleaning 'bibliography.bib' using bibtool (removing 'abstract' and 'file' field). See:
+#     https://tex.stackexchange.com/questions/371401/remove-abstracts-from-bib#371429
+
+# Sorted by author (last name of the first author), and fixed names with bibclean:
+bibtool -s --sort.format='{%N(author)}' -i bibliography.bib -o tmp.bib
+bibclean tmp.bib -max-width 0 -align-equals -fix-names >bibliography.bib
+
+bibclean bibliography.bib -max-width 0 -align-equals -delete-empty-values -no-fix-names
+
+
+# Change citation to lowercase
+sed -e 's/\(cite{[^}]*}\)/\L\1/g' $(find . -name "*.tex") | ag "cite{"
