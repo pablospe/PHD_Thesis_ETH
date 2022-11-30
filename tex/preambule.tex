@@ -95,3 +95,77 @@
 % \url{...} size
 \usepackage{url}
 \renewcommand*{\UrlFont}{\small}
+
+
+%%%%%%%  \ChapFrame
+\usepackage{background}
+\usetikzlibrary{calc}
+\usepackage{ifthen}
+\usepackage{lipsum}
+% % background common settings
+\SetBgScale{1}
+\SetBgAngle{0}
+\SetBgOpacity{1}
+\SetBgContents{}
+% auxiliary counter
+\newcounter{chapshift}
+\addtocounter{chapshift}{-1}
+% the list of colors to be used (add more if needed)
+\newcommand\BoxColor{%
+  \ifcase\thechapshift cyan!30\or teal!30\or olive!30\or brown!30\or red!30\or orange!30\or blue!30\or lime!30\or magenta!30\else yellow!30\fi}
+% the main command; the mandatory argument sets the color of the vertical box
+\makeatletter
+\newcommand\ChapFrame[1]{%
+\AddEverypageHook{%
+\ifthenelse{\isodd{\thepage}}
+{\SetBgContents{%
+  \begin{tikzpicture}[overlay,remember picture]
+  \node[fill=\BoxColor,inner sep=0pt,rectangle,text width=0.3cm,
+    text height=4cm,align=center,anchor=north east]
+  at ($ (current page.north east) + (-0cm,-0.5cm - 4*\thechapshift cm) $)
+  {\rotatebox{90}{\parbox[c][0.2cm][t]{4cm}{%
+    \centering\textcolor{black}{\scshape \scriptsize Chapter\,~\,\thechapter}}}};
+  \end{tikzpicture}}%
+}
+{\SetBgContents{%
+  \begin{tikzpicture}[overlay,remember picture]
+  \node[fill=\BoxColor,inner sep=0pt,rectangle,text width=0.3cm,
+    text height=4cm,align=center,anchor=north west]
+  at ($ (current page.north west) + (-0cm,-20 - 4*\thechapshift cm) $)
+  {\rotatebox{90}{\parbox[c][0.2cm][t]{4cm}{%
+    \centering\textcolor{black}{\scshape \scriptsize Chapter\,~\,\thechapter}}}};
+  \end{tikzpicture}}
+}
+\bg@material}%
+  \stepcounter{chapshift}
+}
+\newcommand\BoxColorEmpty{%
+  \ifcase\thechapshift white!100\or white!100\or white!100\or white!100\else white!100\fi}
+% \newcommand\ChapFrameEmpty{%
+% \AddEverypageHook{\SetBgContents{}}
+% }
+\makeatletter
+\newcommand\ChapFrameEmpty[1]{%
+\AddEverypageHook{%
+\ifthenelse{\isodd{\thepage}}
+{\SetBgContents{%
+  \begin{tikzpicture}[overlay,remember picture]
+  \node[fill=\BoxColorEmpty,inner sep=0pt,rectangle,text width=0.3cm,
+    text height=4cm,align=center,anchor=north east]
+  at ($ (current page.north east) + (-0cm,-0.5cm - 4*\thechapshift cm) $)
+  {\rotatebox{90}{\parbox[c][0.2cm][t]{4cm}{%
+    \centering\textcolor{black}{}}}};
+  \end{tikzpicture}}%
+}
+{\SetBgContents{%
+  \begin{tikzpicture}[overlay,remember picture]
+  \node[fill=\BoxColorEmpty,inner sep=0pt,rectangle,text width=0.3cm,
+    text height=4cm,align=center,anchor=north west]
+  at ($ (current page.north west) + (-0cm,-20 - 4*\thechapshift cm) $)
+  {\rotatebox{90}{\parbox[c][0.2cm][t]{4cm}{%
+    \centering\textcolor{black}{}}}};
+  \end{tikzpicture}}
+}
+\bg@material}%
+%   \stepcounter{chapshift}
+}
